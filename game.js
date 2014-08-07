@@ -1,8 +1,3 @@
-/*
-TODO
-    B. Modularize?
-    C. Use constants?
-*/
 (function() {
 
 /* Local Vars:
@@ -41,7 +36,7 @@ var start_game = function() {
             }
         }
     });
-    board = document.getElementById("game");
+    board = document.getElementById('game');
     context = board.getContext('2d');
     theme = document.createElement('audio');
     theme.setAttribute('src', 'assets/frogger.mp3');
@@ -66,7 +61,7 @@ var game_loop = function() {
     draw_info();
     draw_cars();
     draw_logs();
-    draw_wins()
+    draw_wins();
     if (game.lives > 0) { 
         draw_frog();
     } else {
@@ -92,13 +87,13 @@ var get_arrow_key = function(e) {
             return 'd';
     }
     return null;
-}
+};
 
 //drawer functions: bg, info, frogger, cars, logs, wins
 var draw_bg = function() {
-    context.fillStyle="#191970";
+    context.fillStyle='#191970';
     context.fillRect(0,0,399,284);
-    context.fillStyle="#000000";
+    context.fillStyle='#000000';
     context.fillRect(0,284,399,283);
     context.drawImage(sprites, 0, 0, 399, 113, 0, 0, 399, 113);
     context.drawImage(sprites, 0, 119, 399, 34, 0, 283, 399, 34);
@@ -107,13 +102,13 @@ var draw_bg = function() {
 
 var draw_info = function() {
     draw_lives();
-    context.font = "bold 14pt arial";
-    context.fillStyle = "#00EE00";
-    context.fillText("Level ", 74, 545);
+    context.font = 'bold 14pt arial';
+    context.fillStyle = '#00EE00';
+    context.fillText('Level ', 74, 545);
     draw_level();
-    context.font = "bold 10pt arial";
-    context.fillText("Score: ", 4, 560);
-    context.fillText("Highscore: ", 200, 560);
+    context.font = 'bold 10pt arial';
+    context.fillText('Score: ', 4, 560);
+    context.fillText('Highscore: ', 200, 560);
     draw_score();
 };
 
@@ -130,14 +125,14 @@ var draw_lives = function() {
 };
 
 var draw_level = function() {
-    context.font = "bold 15pt arial";
-    context.fillStyle = "#00EE00";
+    context.font = 'bold 15pt arial';
+    context.fillStyle = '#00EE00';
     context.fillText(game.level, 131, 545);
 };
 
 var draw_score = function() {
-    context.font = "bold 10pt arial";
-    context.fillStyle = "#00EE00";
+    context.font = 'bold 10pt arial';
+    context.fillStyle = '#00EE00';
     context.fillText(game.score, 49, 560);
     if (window.localStorage['highscore']) {
         highscore = localStorage['highscore'];
@@ -190,7 +185,7 @@ var draw_frog = function() {
             context.drawImage(sprites, 12, 335, 19, 23, game.posX, game.posY, 19, 23);
         }
     }
-}
+};
 
 var draw_wins = function() {
     for (var i=0; i<game.won.length; i++) {
@@ -237,16 +232,16 @@ var draw_logs = function() {
 };
 
 var game_over = function() {
-    context.font = "bold 72pt arial";
-    context.fillStyle = "#FFFFFF";
-    context.fillText("GAME", 60, 150);
-    context.fillText("OVER", 60, 300);
+    context.font = 'bold 72pt arial';
+    context.fillStyle = '#FFFFFF';
+    context.fillText('GAME', 60, 150);
+    context.fillText('OVER', 60, 300);
     if (game.score >= highscore) {
         localStorage['highscore'] = game.score;
-        context.font = "bold 48pt arial";
-        context.fillStyle = "#00EE00";
-        context.fillText("YOU GOT A", 20, 380);
-        context.fillText("HIGHSCORE", 6, 460);
+        context.font = 'bold 48pt arial';
+        context.fillStyle = '#00EE00';
+        context.fillText('YOU GOT A', 20, 380);
+        context.fillText('HIGHSCORE', 6, 460);
     }
 };
 
@@ -328,7 +323,7 @@ var level = function() {
         game.won[i] = false;
     }
     game.score += 1000;
-    game.level ++;
+    game.level++;
 };
 
 var collides = function(x1, y1, w1, h1, x2, y2, w2, h2) {
@@ -341,11 +336,21 @@ var collides = function(x1, y1, w1, h1, x2, y2, w2, h2) {
 var car_collision = function() {
     if (game.posY < 505 && game.posY > 270) {
         for (var i=0; i<cars.length; i++) {
-            if (collides(game.posX, game.posY, game.width, game.height, cars[i].posX, cars[i].posY, cars[i].width, cars[i].height)) return true;
+            if (collides(
+                    game.posX, 
+                    game.posY, 
+                    game.width, 
+                    game.height, 
+                    cars[i].posX, 
+                    cars[i].posY, 
+                    cars[i].width, 
+                    cars[i].height)) {
+                return true;
+            } 
         }
     }
     return false;
-}
+};
 
 var log_collision = function() {
     if (game.posY < 270) {
@@ -354,16 +359,16 @@ var log_collision = function() {
         }
     }
     return -1;
-}
+};
 
 var water_collision = function() {
     return (game.posY > 105 && game.posY < 270);
-}
+};
 
 var sploosh = function() {
     game.lives--;
     game.dead = 20;
-}
+};
 
 // object initializers - cars, logs
 var make_cars = function() {
@@ -380,7 +385,7 @@ var make_cars = function() {
         make_car(5, 80), 
         make_car(5, 240)
     ];
-}
+};
 
 var make_car = function(row, x, model) {
     switch(row) {
@@ -397,11 +402,21 @@ var make_car = function(row, x, model) {
         case 5:
             return new Car(x==null?399:x, rows[row], row, 4, model==null?4:model);
     }
-}
+};
 
 var make_logs = function() {
-    logs = [make_log(7), make_log(7, 170), make_log(8), make_log(8, 200), make_log(9), make_log(10), make_log(11), make_log(11, 100, 0), make_log(12)];
-}
+    logs = [
+        make_log(7), 
+        make_log(7, 170), 
+        make_log(8), 
+        make_log(8, 200), 
+        make_log(9), 
+        make_log(10), 
+        make_log(11), 
+        make_log(11, 100, 0), 
+        make_log(12)
+    ];
+};
 
 var make_log = function(row, x, len) {
     switch(row) {
@@ -418,7 +433,7 @@ var make_log = function(row, x, len) {
         case 12:
             return new Log(x==null?-85:x, rows[row], row, 3, -1, len==null?2:len);
     }
-}
+};
 
 /* game "classes" - game, car, log
  * Car models:
@@ -438,7 +453,7 @@ var Car = function(x, y, lane, speed, model) {
     this.height = models[model].height;
     this.move = function() {
         this.posX = this.posX - (models[model].dir * this.speed * game.level);
-    }
+    };
     this.draw = function() {
         switch(this.model) {
             case 0:
@@ -457,11 +472,11 @@ var Car = function(x, y, lane, speed, model) {
                 context.drawImage(sprites, 105, 301, 46, 19, this.posX, this.posY, 46, 19);
                 break;         
         }
-    }
+    };
     this.out_of_bounds = function() {
         return ((this.posX + this.width) < 0 || this.posX > 399);
-    }
-}
+    };
+};
 
 /* Log lengths:
  *   0: long
@@ -496,7 +511,7 @@ var Log = function(x, y, row, speed, dir, length) {
     this.out_of_bounds = function() {
         return ((this.posX + this.width) < 0 || this.posX > 399);
     }
-}
+};
 
 var Game = function() {
     this.lives = 5;
