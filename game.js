@@ -5,9 +5,7 @@ TODO
 */
 (function() {
 
-/* 
- *
- * Local Vars:
+/* Local Vars:
  *   models : Object[] -- 
  *   lengths : Object[] --
  *   rows : Int[] -- y-coords of rows starting with first traffic row
@@ -21,24 +19,24 @@ var models = [
     {width: 46, height: 19, dir: 1}
 ];
 var lengths = [{width: 179, height: 21}, {width: 118, height: 21}, {width: 85, height: 22}];
-// y-coords of rows starting with first traffic row
 var rows = [473, 443, 413, 383, 353, 323, 288, 261, 233, 203, 173, 143, 113];
 var context = null;
 
 var start_game = function() {
     game = new Game();
     $(document).keydown(function(e) {
-        if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) { //arrow keys
+        var arrow_key = get_arrow_key(e);
+        if (arrow_key) {
             e.preventDefault(); 
         }
         if (game.dead === -1 && game.lives > 0) {
-            if (e.keyCode === 38){ 
+            if (arrow_key === 'u'){ 
                 up();
-            } else if (e.keyCode === 40){
+            } else if (arrow_key === 'd'){
                 down();
-            } else if (e.keyCode === 37){
+            } else if (arrow_key === 'l'){
                 left();
-            } else if (e.keyCode === 39){
+            } else if (arrow_key === 'r'){
                 right();
             }
         }
@@ -75,6 +73,26 @@ var game_loop = function() {
         game_over();
     }
 };
+
+var get_arrow_key = function(e) {
+    /* 
+    Args:
+        e -- event
+
+    Returns: the name of the arrow key that was pressed when a key is pressed or null.
+    */
+    switch(e.keyCode) {
+        case 37:
+            return 'l';
+        case 38:
+            return 'u';
+        case 39:
+            return 'r';
+        case 40:
+            return 'd';
+    }
+    return null;
+}
 
 //drawer functions: bg, info, frogger, cars, logs, wins
 var draw_bg = function() {
@@ -349,29 +367,35 @@ var sploosh = function() {
 
 // object initializers - cars, logs
 var make_cars = function() {
-    cars = [make_car(0), make_car(0, 130, 3), make_car(0, 260, 3), make_car(1), make_car(2), make_car(2, 150, 0), make_car(3, 200), make_car(4), make_car(5), make_car(5, 80), make_car(5, 240)];
+    cars = [
+        make_car(0), 
+        make_car(0, 130, 3), 
+        make_car(0, 260, 3), 
+        make_car(1), 
+        make_car(2), 
+        make_car(2, 150, 0), 
+        make_car(3, 200), 
+        make_car(4), 
+        make_car(5), 
+        make_car(5, 80), 
+        make_car(5, 240)
+    ];
 }
 
 var make_car = function(row, x, model) {
     switch(row) {
         case 0:
             return new Car(x==null?-25:x, rows[row], row, 3, model==null?1:model);
-            break;
         case 1:
             return new Car(x==null?399:x, rows[row], row, 2, model==null?0:model);
-            break;
         case 2:
             return new Car(x==null?399:x, rows[row], row, 4, model==null?2:model);
-            break;
         case 3:
             return new Car(x==null?-25:x, rows[row], row, 3, model==null?3:model);
-            break;
         case 4:
             return new Car(x==null?399:x, rows[row], row, 3, model==null?0:model);
-            break;
         case 5:
             return new Car(x==null?399:x, rows[row], row, 4, model==null?4:model);
-            break;
     }
 }
 
@@ -383,22 +407,16 @@ var make_log = function(row, x, len) {
     switch(row) {
         case 7:
             return new Log(x==null?399:x, rows[row], row, 1, 1, len==null?1:len);
-            break;
         case 8:
             return new Log(x==null?-85:x, rows[row], row, 4, -1, len==null?2:len);
-            break;
         case 9:
             return new Log(x==null?399:x, rows[row], row, 2, 1, len==null?0:len);
-            break;
         case 10:
             return new Log(x==null?-85:x, rows[row], row, 2, -1, len==null?1:len);
-            break;
         case 11:
             return new Log(x==null?399:x, rows[row], row, 3, 1, len==null?1:len);
-            break;
         case 12:
             return new Log(x==null?-85:x, rows[row], row, 3, -1, len==null?2:len);
-            break;
     }
 }
 
@@ -467,11 +485,9 @@ var Log = function(x, y, row, speed, dir, length) {
             case 0:
                 context.drawImage(sprites, 6, 165, 179, 21, this.posX, this.posY, 179, 21);
                 break;
-
             case 1:
                 context.drawImage(sprites, 5, 197, 118, 21, this.posX, this.posY, 118, 21);
                 break;
-
             case 2:
                 context.drawImage(sprites, 6, 229, 85, 22, this.posX, this.posY, 85, 22);
                 break;
