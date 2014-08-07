@@ -1,4 +1,4 @@
-function start_game() {
+function start_game() {//this is blidury
     game = new Game();
    $(document).keydown(function(e) {
         if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
