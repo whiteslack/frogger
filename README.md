@@ -1,5 +1,5 @@
 #Frogger#
-[Play it here](http://natetarrh.com/frogger/).
+[Play it here](http://nate.tarrh.website/frogger/).
 
 A working version of Frogger playable in the browser, implemented with JavaScript.
 
