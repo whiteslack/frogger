@@ -7,7 +7,9 @@
     alert('sprites loaded');
   };
 
-  frogger_drawSprite(context, imageName, x, y) {
+  frogger_drawSprite(imageName, x, y) {
+    document.getElementById('game');
+    context = board.getContext('2d');
     if (imageName == 'pinkcar' || imageName == 'pink-car' || imageName == 'pink') {
       context.drawImage(helpSprites, 8, 265, 30, 22, x, y, 30, 22);
     } else if (imageName = 'bulldozer') {
