@@ -8,8 +8,14 @@ helpSprites.onload = function() {
   alert('sprites loaded');
 };
 
-function draw_sprite(x, y) {
-  alert('x is ' + x + ' and y is ' + y);
+function draw_sprite(imageName, x, y) {
+    document.getElementById('game');
+    context = board.getContext('2d');
+    if (imageName == 'pinkcar' || imageName == 'pink-car' || imageName == 'pink') {
+      context.drawImage(helpSprites, 8, 265, 30, 22, x, y, 30, 22);
+    } else if (imageName = 'bulldozer') {
+      context.drawImage(helpSprites, 9, 300, 24, 21, x, y, 24, 21);
+    }
 }
 
 test_one();
