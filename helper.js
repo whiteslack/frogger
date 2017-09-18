@@ -1,4 +1,4 @@
-(function() {
+//(function() {
 
   alert('try loading sprites');
   helpSprites = new Image();
@@ -17,6 +17,6 @@
     }
   }
 
-  window['frogger_drawSprite'] = drawSprite;
+  //window['frogger_drawSprite'] = drawSprite;
 
-})();
+//})();
