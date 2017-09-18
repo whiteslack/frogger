@@ -7,7 +7,7 @@
     alert('sprites loaded');
   };
 
-  frogger_drawSprite(imageName, x, y) {
+  function drawSprite(imageName, x, y) {
     document.getElementById('game');
     context = board.getContext('2d');
     if (imageName == 'pinkcar' || imageName == 'pink-car' || imageName == 'pink') {
