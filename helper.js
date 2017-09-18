@@ -8,7 +8,7 @@
     $('#testp').html('why');
   };
 
-  var drawSprite = function (imageName, x, y) {
+  function drawSprite(imageName, x, y) {
     document.getElementById('game');
     context = board.getContext('2d');
     if (imageName == 'pinkcar' || imageName == 'pink-car' || imageName == 'pink') {
@@ -18,6 +18,6 @@
     }
   };
 
-  //window['frogger_drawSprite'] = drawSprite;
+  window['frogger_drawSprite'] = drawSprite;
 
 })();
