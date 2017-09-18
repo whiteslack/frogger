@@ -5,7 +5,7 @@
   helpSprites.src = 'https://raw.githubusercontent.com/natetarrh/frogger/master/assets/frogger_sprites.png';
   helpSprites.onload = function() {
     alert('sprites loaded');
-    $('#test-p').html('why');
+    $('#testp').html('why');
   };
 
   var drawSprite = function (imageName, x, y) {
