@@ -1,4 +1,4 @@
-//(function() {
+(function() {
 
   alert('try loading sprites');
   helpSprites = new Image();
@@ -7,7 +7,7 @@
     alert('sprites loaded');
   };
 
-  function drawSprite(imageName, x, y) {
+  var drawSprite = function (imageName, x, y) {
     document.getElementById('game');
     context = board.getContext('2d');
     if (imageName == 'pinkcar' || imageName == 'pink-car' || imageName == 'pink') {
@@ -15,8 +15,8 @@
     } else if (imageName = 'bulldozer') {
       context.drawImage(helpSprites, 9, 300, 24, 21, x, y, 24, 21);
     }
-  }
+  };
 
   //window['frogger_drawSprite'] = drawSprite;
 
-//})();
+})();
