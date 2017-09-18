@@ -19,5 +19,3 @@ function draw_sprite(imageName, x, y) {
       context.drawImage(helpSprites, 105, 301, 46, 19, x, y, 46, 19);
     }
 }
-
-test_one();
