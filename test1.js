@@ -1,8 +1,4 @@
-(function() {
-
   function test_one() {
-    alert('trying test one');
+    alert('trying test one again');
   }
   test_one();
-
-})();
