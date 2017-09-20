@@ -5,8 +5,16 @@ helpSprites.onload = function() {
 };
 
 function stamp(imageName, x, y) {
-    x = if (x) ? x : 0;
-    y = if (y) ? y: 0;
+    if (!spritesLoaded) {
+      alert('sprites not loaded yet');
+      return;
+    }
+    if (!x) {
+      x = 0;
+    }
+    if (!y) {
+      y = 0;
+    }
     var board = document.getElementById('game');
     var context = board.getContext('2d');
     // Cars
