@@ -1,7 +1,9 @@
+var spritesLoaded = false;
 helpSprites = new Image();
 helpSprites.src = 'https://raw.githubusercontent.com/natetarrh/frogger/master/assets/frogger_sprites.png';
 helpSprites.onload = function() {
   alert('sprites loaded');
+  spritesLoaded = true;
 };
 
 function stamp(imageName, x, y) {
