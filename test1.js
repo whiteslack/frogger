@@ -2,13 +2,16 @@ var spritesLoaded = false;
 helpSprites = new Image();
 helpSprites.src = 'https://raw.githubusercontent.com/natetarrh/frogger/master/assets/frogger_sprites.png';
 helpSprites.onload = function() {
-  alert('sprites loaded');
+  alert('sprites loaded hopefully resolving timeout');
   spritesLoaded = true;
 };
 
 function stamp(imageName, x, y) {
     if (!spritesLoaded) {
-      alert('sprites not loaded yet');
+      alert('sprites not loaded yet, trying timeout');
+      setTimeout(function() {
+        stamp(imageName, x, y);
+      }, 100);
       return;
     }
     if (!x) {
