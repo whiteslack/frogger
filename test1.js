@@ -2,29 +2,22 @@ var spritesLoaded = false;
 helpSprites = new Image();
 helpSprites.src = 'https://raw.githubusercontent.com/natetarrh/frogger/master/assets/frogger_sprites.png';
 helpSprites.onload = function() {
-  alert('sprites loaded hopefully resolving timeout');
   spritesLoaded = true;
 };
 
 function stamp(imageName, x, y) {
     if (!spritesLoaded) {
-      alert('sprites not loaded yet, trying timeout for ' + imageName);
       setTimeout(function() {
         stamp(imageName, x, y);
       }, 100);
       return;
     }
-    console.log(imageName);
-    console.log(x);
-    console.log(y);
     if (!x) {
       x = 0;
     }
     if (!y) {
       y = 0;
     }
-    console.log(x);
-    console.log(y);
     var board = document.getElementById('game');
     var context = board.getContext('2d');
     // Cars
