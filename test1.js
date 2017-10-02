@@ -7,7 +7,6 @@ helpSprites.onload = function() {
 };
 
 function stamp(imageName, x, y) {
-    console.log(imageName);
     if (!spritesLoaded) {
       alert('sprites not loaded yet, trying timeout for ' + imageName);
       setTimeout(function() {
@@ -15,12 +14,17 @@ function stamp(imageName, x, y) {
       }, 100);
       return;
     }
+    console.log(imageName);
+    console.log(x);
+    console.log(y);
     if (!x) {
       x = 0;
     }
     if (!y) {
       y = 0;
     }
+    console.log(x);
+    console.log(y);
     var board = document.getElementById('game');
     var context = board.getContext('2d');
     // Cars
