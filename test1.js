@@ -1,12 +1,20 @@
 var spritesLoaded = false;
+var deadFrogSpriteLoaded = false;
 helpSprites = new Image();
 helpSprites.src = 'https://raw.githubusercontent.com/natetarrh/frogger/master/assets/frogger_sprites.png';
 helpSprites.onload = function() {
   spritesLoaded = true;
 };
+deadFrogSprite = new Image();
+deadFrogSprite.src = 'https://raw.githubusercontent.com/natetarrh/frogger/master/assets/dead_frog.png';
+deadFrogSprite.onload = function() {
+  console.log('dead frog sprite loaded');
+  deadFrogSpriteLoaded = true;
+}
 
 function stamp(imageName, x, y) {
-    if (!spritesLoaded) {
+    if ((!spritesLoaded && imageName != 'dead-frog') ||
+        (!deadFrogSpriteLoaded && imageName == 'dead-frog')) {
       setTimeout(function() {
         stamp(imageName, x, y);
       }, 100);
@@ -50,5 +58,8 @@ function stamp(imageName, x, y) {
       context.drawImage(helpSprites, 80, 369, 23, 17, x, y, 23, 17);
     } else if (imageName == 'frog') {
       context.drawImage(helpSprites, 12, 369, 23, 17, x, y, 23, 17);
+    } else if (imageName == 'dead-frog') {
+      console.log('draw dead frog sprite');
+      context.drawImage(deadFrogSprite, 4, 2, 19, 24, x, y, 19, 24);
     }
 }
