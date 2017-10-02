@@ -7,8 +7,9 @@ helpSprites.onload = function() {
 };
 
 function stamp(imageName, x, y) {
+    console.log(imageName);
     if (!spritesLoaded) {
-      alert('sprites not loaded yet, trying timeout');
+      alert('sprites not loaded yet, trying timeout for ' + imageName);
       setTimeout(function() {
         stamp(imageName, x, y);
       }, 100);
