@@ -34,9 +34,9 @@ function stamp(imageName, x, y) {
       context.drawImage(helpSprites, 45, 264, 29, 24, x, y, 29, 24);
     } else if (imageName == 'yellowcar' || imageName == 'yellow-car' || imageName == 'yellow') {
       context.drawImage(helpSprites, 81, 263, 24, 26, x, y, 24, 26);
-    } else if (imageName = 'bulldozer') {
+    } else if (imageName == 'bulldozer') {
       context.drawImage(helpSprites, 9, 300, 24, 21, x, y, 24, 21);
-    } else if (imageName = 'truck') {
+    } else if (imageName == 'truck') {
       context.drawImage(helpSprites, 105, 301, 46, 19, x, y, 46, 19);
     // Logs
     } else if (imageName == 'big-log' || imageName == 'biglog') {
